@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/greengag/public_html/
-    - /bin/cp -R app $DEPLOYPATH
+    - /bin/cp -R app/* $DEPLOYPATH
