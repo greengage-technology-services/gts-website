@@ -1,0 +1,22 @@
+# Deny access to ".htaccess"
+<Files .htaccess>
+Order allow,deny
+Deny from all
+</Files>
+
+# Force HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Disable directory browsing 
+Options -Indexes
+
+# Force "index.html" default index
+DirectoryIndex index.html
+
+# Remove the need for ".html" filetype suffixes
+RewriteEngine on 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
